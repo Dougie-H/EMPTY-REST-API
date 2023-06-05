@@ -2,7 +2,8 @@ package kr.co.pcninc.ecoes.api.controller;
 
 import io.swagger.annotations.*;
 import kr.co.pcninc.ecoes.api.common.ResponseAPI;
-import org.springframework.beans.factory.annotation.Value;
+import kr.co.pcninc.ecoes.api.service.TestService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -11,6 +12,9 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/v1")
 public class TestController {
+
+    @Autowired
+    private TestService testService;
 
     // 메서드 정보
     @ApiOperation(value = "tst", notes  = "테스트 입니다.")
@@ -29,6 +33,8 @@ public class TestController {
     @GetMapping("/test")
     public ResponseAPI test(@RequestParam(name = "param1") String param1,
                             @RequestParam(name = "param2") int param2) {
+
+        int t = testService.selectCount();
 
         ResponseAPI responseAPI = new ResponseAPI();
 
