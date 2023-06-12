@@ -24,9 +24,9 @@ public class SwaggerConfig {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("인더스터리인포 API")
+                .title("EMPTY TEST API FORM")
                 .version("0.0.1")
-                .description("인더스터리인포 API Swagger")
+                .description("EMPTY TEST API Swagger")
                 .build();
     }
 }
