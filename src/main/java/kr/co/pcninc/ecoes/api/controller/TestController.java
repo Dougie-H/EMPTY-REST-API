@@ -1,20 +1,25 @@
 package kr.co.pcninc.ecoes.api.controller;
 
 import io.swagger.annotations.*;
-import kr.co.pcninc.ecoes.api.common.ResponseAPI;
+import kr.co.pcninc.ecoes.api.common.CommonCode;
+import kr.co.pcninc.ecoes.api.domain.dto.ResponseDto;
 import kr.co.pcninc.ecoes.api.service.TestService;
-import org.springframework.beans.factory.annotation.Autowired;
+import kr.co.pcninc.ecoes.api.service.response.ResponseService;
+import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequiredArgsConstructor
 public class TestController {
+    private static final Logger LOGGER = LoggerFactory.getLogger(TestController.class);
 
-    @Autowired
-    private TestService testService;
+    private final TestService testService;
+    private final ResponseService responseService;
 
     // 메서드 정보
     @ApiOperation(value = "tst", notes  = "테스트 입니다.")
@@ -25,28 +30,41 @@ public class TestController {
     })
     // Response 정보
     @ApiResponses({
-            @ApiResponse(code = 200, message = "OK.", response = ResponseAPI.class),
+            @ApiResponse(code = 200, message = "OK.", response = ResponseDto.class),
             @ApiResponse(code = 300, message  = "DB Error."),
             @ApiResponse(code = 400, message  = "Page Not Found.")
     })
     @ResponseBody
-    @GetMapping("/test")
-    public ResponseAPI test(@RequestParam(name = "param1") String param1,
+    @GetMapping(CommonCode.UrlPath.TEST_PATH + "/hello")
+    public ResponseDto test(@RequestParam(name = "param1") String param1,
                             @RequestParam(name = "param2") int param2) {
-
-        int t = testService.selectCount();
-
-        ResponseAPI responseAPI = new ResponseAPI();
-
-        responseAPI.setCode(200);
-        responseAPI.setMessage("abc");
+        String code = CommonCode.Code.FAIL;
+        String msg = CommonCode.Code.FAIL_MSG;
 
         Map<String, Object> result = new HashMap<>();
-        result.put("param1", param1);
-        result.put("param2", param2);
 
-        responseAPI.setBody(result);
+        try {
+            int t = testService.selectCount();
 
-        return responseAPI;
+            result.put("param1", param1);
+            result.put("param2", param2);
+            result.put("getCount", t);
+
+            code = CommonCode.Code.SUCCESS;
+            msg = CommonCode.Code.SUCCESS_MSG;
+
+            LOGGER.info("param1 : [{}], param2: [{}], getCount: [{}]",
+                    param1,
+                    param2,
+                    t);
+        } catch (Exception e) {
+            e.printStackTrace();
+
+            LOGGER.info("param1 : [{}], param2: [{}]",
+                    param1,
+                    param2);
+        }
+
+        return responseService.getSuccessResult(code, msg, result);
     }
 }
