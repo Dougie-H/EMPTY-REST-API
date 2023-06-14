@@ -12,6 +12,7 @@ public class ResponseDto<T> implements Serializable {
     private static final long serialVersionUID = 1458332012562409307L;
 
     @Setter
+    @Getter
     public static class CommonResponse {
         @ApiParam(value = "응답 코드")
         private String code;
@@ -26,6 +27,7 @@ public class ResponseDto<T> implements Serializable {
     }
 
     @Setter
+    @Getter
     public static class SingleResponse<T> extends CommonResponse {
         @ApiParam(value = "결과 데이터")
         private T data;
