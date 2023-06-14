@@ -1,4 +1,4 @@
-package kr.co.pcninc.ecoes.api;
+package com.dougie.api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,9 +6,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableSwagger2
-public class EcoesApiApplication {
+public class DougieApiApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(EcoesApiApplication.class, args);
+		SpringApplication.run(DougieApiApplication.class, args);
 	}
 
 }

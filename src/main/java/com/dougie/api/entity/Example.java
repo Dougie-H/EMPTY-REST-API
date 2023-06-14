@@ -1,4 +1,4 @@
-package kr.co.pcninc.ecoes.api.domain.entity;
+package com.dougie.api.entity;
 
 import lombok.Builder;
 import lombok.Data;
@@ -8,10 +8,9 @@ import java.io.Serializable;
 
 @Builder
 @Data
-public class TestEntity implements Serializable {
+public class Example implements Serializable {
     @Serial
     private static final long serialVersionUID = -1393268690363386258L;
 
-    private int param1;
-    private String param2;
+    private String exampleNo;
 }

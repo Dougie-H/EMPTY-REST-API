@@ -12,6 +12,6 @@
     </settings>
     <typeAliases>
         <!-- 오탈자 조심 -->
-        <package name="kr.co.pcninc.ecoes.api.domain.vo"/>
+        <package name="com.dougie.api.entity"/>
     </typeAliases>
 </configuration>

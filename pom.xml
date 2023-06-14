@@ -8,11 +8,11 @@
 		<version>2.7.13-SNAPSHOT</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>kr.co.pcninc.ecoes.api</groupId>
-	<artifactId>ecoesApi</artifactId>
+	<groupId>com.dougie.rest.api</groupId>
+	<artifactId>dougieApi</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>ecoesApi</name>
-	<description>ecoes-api</description>
+	<name>dougieApi</name>
+	<description>dougie-api</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>

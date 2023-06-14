@@ -1,4 +1,4 @@
-package kr.co.pcninc.ecoes.api.config;
+package com.dougie.api.config;
 
 
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -19,7 +19,7 @@ import javax.sql.DataSource;
 
 @Configuration
 /*멀티DB사용시 mapper클래스파일 스켄용 basePackages를 DB별로 따로설정*/
-@MapperScan(basePackages = "kr.co.pcninc.ecoes.api.mappers", sqlSessionFactoryRef = "db1SqlSessionFactory")
+@MapperScan(basePackages = "com.dougie.api.repository", sqlSessionFactoryRef = "db1SqlSessionFactory")
 public class DataBaseConfig {
 
     @Primary
