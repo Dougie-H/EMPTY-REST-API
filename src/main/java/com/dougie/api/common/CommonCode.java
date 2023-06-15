@@ -9,5 +9,6 @@ public class CommonCode {
     public class UrlPath {
         public static final String BASE_PATH = "/api/v1";
         public static final String EXAMPLE_PATH = BASE_PATH + "/example";
+        public static final String EXAMPLE_GET_PATH = EXAMPLE_PATH + "/{exampleNo}";
     }
 }

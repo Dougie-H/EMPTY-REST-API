@@ -1,15 +1,12 @@
 package com.dougie.api.service;
 
-import com.dougie.api.exception.ExampleNotFoundException;
+import com.dougie.api.exception.CNotFoundDataException;
 import com.dougie.api.model.ExampleDto;
-import com.dougie.api.entity.Example;
 import com.dougie.api.repository.ExampleRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class ExampleService {
@@ -20,7 +17,7 @@ public class ExampleService {
 
     public ExampleDto getExample(String exampleNo) {
         return ExampleDto.fromEntity(exampleRepository.findByExampleNo(exampleNo)
-                .orElseThrow(() -> new ExampleNotFoundException(exampleNo))
+                .orElseThrow(() -> new CNotFoundDataException.ExampleNotFoundException(exampleNo))
         );
     }
 }
