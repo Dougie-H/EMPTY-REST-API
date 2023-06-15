@@ -38,8 +38,8 @@ public class ExampleController {
             @ApiResponse(code = 400, message  = "Page Not Found.")
     })
     @ResponseBody
-    @GetMapping(CommonCode.UrlPath.EXAMPLE_PATH + "/{exampleNo}")
-    public ResponseDto.SingleResponse<ExampleDto> hello(@PathVariable String exampleNo) {
+    @GetMapping(CommonCode.UrlPath.EXAMPLE_GET_PATH)
+    public ResponseDto.SingleResponse<ExampleDto> hello(@PathVariable("exampleNo") String exampleNo) {
         return new ResponseDto.SingleResponse(
                 CommonCode.ResponseCodeAndMessage.SUCCESS,
                 CommonCode.ResponseCodeAndMessage.SUCCESS_MSG,

@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RequiredArgsConstructor
 @RestControllerAdvice
 public class CustomExceptionHandler {
-    @ExceptionHandler(ExampleNotFoundException.class)
-    protected ResponseDto.CommonResponse exampleNotFoundException(ExampleNotFoundException e) {
+    @ExceptionHandler(CNotFoundDataException.ExampleNotFoundException.class)
+    protected ResponseDto.CommonResponse exampleNotFoundException(CNotFoundDataException.ExampleNotFoundException e) {
         return new ResponseDto.CommonResponse("9999", "Example Not Found. ExampleNo : " + e.getExampleNo());
     }
 
