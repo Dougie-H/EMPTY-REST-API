@@ -24,26 +24,26 @@ public class ExampleController {
 
     private final ExampleService exampleService;
 
+    private CommonCode.ResponseCodeAndMessage codeAndMessage;
+
     /**
      * Empty Api.
      *
      * @param exampleNo param description
      * @return responseDto.SingleResponse<ExampleDto> Class
      */
-    @ApiOperation(value = "tst", notes  = "테스트 입니다.")
-    @ApiImplicitParam(name = "dtoParam", value = "param1 aaaaaaaaaaa", required = true)
+    @ApiOperation(value = "예제 API Request", notes  = "예제 API Request 입니다.")
+//    @ApiImplicitParam(name = "dtoParam", value = "param1 aaaaaaaaaaa", required = true)
     @ApiResponses({
-            @ApiResponse(code = 200, message = "OK.", response = ResponseDto.class),
-            @ApiResponse(code = 300, message  = "DB Error."),
-            @ApiResponse(code = 400, message  = "Page Not Found.")
+            @ApiResponse(code = 200, message = "요청이 완료 되었습니다.", response = ResponseDto.SingleResponse.class),
+            @ApiResponse(code = 400, message = "정상적인 요청이 아닙니다."),
+            @ApiResponse(code = 403, message = "접근 권한이 없는 요청 입니다."),
+            @ApiResponse(code = 500, message = "알 수 없는 오류가 발생 하였습니다. 관리자에게 문의 바랍니다.")
     })
     @ResponseBody
     @GetMapping(CommonCode.UrlPath.EXAMPLE_GET_PATH)
-    public ResponseDto.SingleResponse<ExampleDto> hello(@PathVariable("exampleNo") String exampleNo) {
-        return new ResponseDto.SingleResponse(
-                CommonCode.ResponseCodeAndMessage.SUCCESS,
-                CommonCode.ResponseCodeAndMessage.SUCCESS_MSG,
-                exampleService.getExample(exampleNo)
-        );
+    public ResponseDto.SingleResponse<ExampleDto> hello(@PathVariable(name = "exampleNo") String exampleNo) {
+        assert exampleNo.length() > 0 : new ResponseDto.CommonResponse(codeAndMessage.BAD_REQUEST, codeAndMessage.BAD_REQUEST_MSG);
+        return new ResponseDto.SingleResponse(codeAndMessage.SUCCESS, codeAndMessage.SUCCESS_MSG, exampleService.getExample(exampleNo));
     }
 }
