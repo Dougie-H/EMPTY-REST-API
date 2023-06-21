@@ -10,6 +10,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 /**
  * Empty Api Form Class
  * 테스트용 API
@@ -33,7 +35,6 @@ public class ExampleController {
      * @return responseDto.SingleResponse<ExampleDto> Class
      */
     @ApiOperation(value = "예제 API Request", notes  = "예제 API Request 입니다.")
-//    @ApiImplicitParam(name = "dtoParam", value = "param1 aaaaaaaaaaa", required = true)
     @ApiResponses({
             @ApiResponse(code = 200, message = "요청이 완료 되었습니다.", response = ResponseDto.SingleResponse.class),
             @ApiResponse(code = 400, message = "정상적인 요청이 아닙니다."),
@@ -46,4 +47,15 @@ public class ExampleController {
         assert exampleNo.length() > 0 : new ResponseDto.CommonResponse(codeAndMessage.BAD_REQUEST, codeAndMessage.BAD_REQUEST_MSG);
         return new ResponseDto.SingleResponse(codeAndMessage.SUCCESS, codeAndMessage.SUCCESS_MSG, exampleService.getExample(exampleNo));
     }
+
+    /**
+     * Post Request
+     */
+    @ResponseBody
+    @PostMapping(CommonCode.UrlPath.EXAMPLE_PATH)
+    public ResponseDto.CommonResponse postExample(@RequestBody @Valid ExampleDto example) {
+
+        return new ResponseDto.CommonResponse(codeAndMessage.SUCCESS_201, codeAndMessage.SUCCESS_MSG_201);
+    }
+
 }
