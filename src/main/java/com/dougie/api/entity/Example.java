@@ -13,4 +13,8 @@ public class Example implements Serializable {
     private static final long serialVersionUID = -1393268690363386258L;
 
     private String exampleNo;
+
+    private String exampleParam1;
+
+    private String exampleParam2;
 }
