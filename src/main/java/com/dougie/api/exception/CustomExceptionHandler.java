@@ -38,9 +38,9 @@ public class CustomExceptionHandler {
         return new ResponseDto.CommonResponse(codeAndMessage.BAD_REQUEST, e.getBindingResult().getAllErrors().get(0).getDefaultMessage());
     }
 
-    @ExceptionHandler(CNotFoundDataException.ExampleNotFoundException.class)
-    protected ResponseDto.CommonResponse exampleNotFoundException(CNotFoundDataException.ExampleNotFoundException e) {
-        return new ResponseDto.CommonResponse("9999", "Example Not Found. ExampleNo : " + e.getExampleNo());
+    @ExceptionHandler(CNotFoundDataException.UserNotFoundException.class)
+    protected ResponseDto.CommonResponse userNotFoundException(CNotFoundDataException.UserNotFoundException e) {
+        return new ResponseDto.CommonResponse(codeAndMessage.NOT_FOUND, codeAndMessage.NOT_FOUND_MSG + " [userNo : " + e.getUserNo() + "]");
     }
 
     @ExceptionHandler(TooManyResultsException.class)

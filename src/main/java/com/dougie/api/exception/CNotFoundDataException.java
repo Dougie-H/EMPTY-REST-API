@@ -7,11 +7,11 @@ public class CNotFoundDataException extends RuntimeException {
 
     @Getter
     @Setter
-    public static class ExampleNotFoundException extends CNotFoundDataException {
-        private String exampleNo;
+    public static class UserNotFoundException extends CNotFoundDataException {
+        private String userNo;
 
-        public ExampleNotFoundException(String exampleNo) {
-            this.exampleNo = exampleNo;
+        public UserNotFoundException(String userNo) {
+            this.userNo = userNo;
         }
     }
 }

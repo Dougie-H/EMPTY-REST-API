@@ -68,9 +68,9 @@
 		</dependency>
 
 		<dependency>
-			<artifactId>postgresql</artifactId>
-			<groupId>org.postgresql</groupId>
-			<version>42.5.1</version>
+			<groupId>org.mariadb.jdbc</groupId>
+			<artifactId>mariadb-java-client</artifactId>
+			<scope>runtime</scope>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter -->
